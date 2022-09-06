@@ -1,0 +1,29 @@
+# 브루트 포스, 시간이 너무 오래 걸림
+class solution:
+  def twoSum(self, nums:List[int], target: int) -> List[int]:
+    for i in range(len(nums)) :
+      for j in range(i+1, len(nums)) :
+        if nums[i] + nums[j] == target :
+          return [i, j]
+          
+# 내장함수 in 사용
+
+class solution :  
+  def twoSum(self, nums:List[int], target: int) -> List[int]:
+    for i, j in enumerate(nums):
+      rest = target - n 
+      if rest in nums[i+1:]:
+        return [nums.index(n), nums[i+1:].index(rest) + (i+1)]
+        
+# 해시테이블 사용
+  
+class solution :  
+  def twoSum(self, nums:List[int], target: int) -> List[int]:
+    nums_map = {}
+    for i, num in enumerate(nums):
+      nums_map[num] = i
+      
+    for i, num in enumerate(nums):
+      if target - num in nums_map and i != nums_map[target-num]:
+        return[i, nums_map[target-num]]
+        
