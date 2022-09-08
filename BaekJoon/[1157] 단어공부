@@ -1,0 +1,22 @@
+words = input()
+unique_words = list(set(words))
+
+cnt_list = []
+
+# apple
+# aple
+
+for i in unique_words :
+  cnt = words.count(i)
+  cnt_list.append(cnt)
+
+[1211]
+  
+if cnt_list.count(max(cnt_list)) > 1 :
+  print("?")
+
+else :
+  max_index = cnt_list.index(max(cnt_list)) # [1]
+  print(unique_words[max_index])
+  
+  
