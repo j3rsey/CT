@@ -1,0 +1,28 @@
+select(
+    ifnull(
+       round(  (select count(distinct requester_id, accepter_id ) from RequestAccepted)
+        / (select count(distinct sender_id, send_to_id ) from FriendRequest) ,2)
+        , 0.00)
+) as accept_rate
+
+
+1. 성공한 확률 = 성공한 갯수 / 총 갯수 # 조건 2번째 자리에서 반올림 할것
+  
+ round( (select count(distinct requester_id, accepter_id) from RequestAccepted) /
+        (select count(distinct sender_id, send_to_id ) from FriendRequest) ,2)
+        
+2. null값이 반환되는 경우가 생기면 0.00을 반환하라 -> ifnull 사용
+
+ifnull(
+       round(  (select count(distinct requester_id, accepter_id ) from RequestAccepted)
+        / (select count(distinct sender_id, send_to_id ) from FriendRequest) ,2)
+        , 0.00)
+        
+3. 출력
+
+select(
+    ifnull(
+       round(  (select count(distinct requester_id, accepter_id ) from RequestAccepted)
+        / (select count(distinct sender_id, send_to_id ) from FriendRequest) ,2)
+        , 0.00)
+) as accept_rate
