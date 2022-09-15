@@ -1,0 +1,17 @@
+1. 대문자 입력받기
+2. 해당 문자 들의 값 추출하기
+3. 전부 더해서 표시하기
+
+1. 
+n = input().upper()
+
+2.
+dial = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ']
+num = 0
+
+for i in range(len(n)) : # 몇개 입력 받았는지 확인 ex) apple 
+  for j in dial : #dial 에서 어디에 위치하는지 확인 ex) a 
+    if n[i] in dial : #ex)a in index 1
+      num += dial.index(j)+3 #dial.index(a) = 0 +3 -> 3초
+
+print(num)
