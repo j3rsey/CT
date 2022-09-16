@@ -1,0 +1,33 @@
+내가 생각 했던 풀이 방식 
+cro_alp = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+word = list(input)
+
+해서 하나한 비교하려니 방법이 떠오르지 않음
+
+찾아본 방식
+
+# 크로아티아 문자를 하나씩 가져와서 내문장과 비교하고 걔중에 있으면 다른 문자로 치환하여 하나의 문자로 인식 시키기
+
+cro_alp = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+word = input
+
+for i in cro_alp :
+  word = word.replace(i, '*')
+print(len(word))
+
+간단한 문제 접근 방식을 달리 생각 해볼것.
+
+# 2. 두번쨰 방식 전부 돌면서 하나하나 비교해보고 맞으면 카운팅해서 처리하기
+
+word = input()
+croatian = 0
+
+for i in range(len(word)):
+    if (i+3 <= len(word)) :
+        if(word[i:i+3] == 'dz='):
+            croatian += 1
+    if (i+2 <= len(word)) :
+        if(word[i:i+2]=='c=' or word[i:i+2]=='c-' or word[i:i+2]=='d-' or word[i:i+2]=='lj' or word[i:i+2]=='nj' or word[i:i+2]=='s=' or word[i:i+2]=='z='):
+            croatian += 1
+
+print(len(word) - croatian)
