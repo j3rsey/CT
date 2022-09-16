@@ -1,0 +1,29 @@
+1. company, orders 테이블에서 red와 관련있는 sales_id행 추출
+
+2. salesperson 과 비교하여 해당 sales_id 제외하고 name 추출
+
+내가 짠 코드
+
+1.
+select sales_id
+from company c
+join orders o on c.com_id = o.com_id
+where c.name='RED'
+
+: 1,4 value 나옴
+
+2. 
+select name
+from salesperson s
+where sales_id not in (select sales_id
+from company c
+join orders o on c.com_id = o.com_id
+where c.name='RED')
+
+# another solution
+SELECT name from salesperson
+where sales_id not in 
+(
+    select sales_id from orders where com_id in 
+	(select com_id from company where name='RED')
+)
