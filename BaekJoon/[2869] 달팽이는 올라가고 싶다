@@ -1,0 +1,25 @@
+# 내가 처음 생각한 방식 근데 이렇게 하니까 시간 초과가 뜸 다른방식 생각
+import sys
+import math
+
+a, b, v = map(int, sys.stdin.readline().split())
+
+day = 0
+
+while True :
+    day += 1
+    if day >= (v-b)/(a-b) :
+        print(math.ceil(day))
+        break
+        
+# 풀이 처음부터 식으로 그냥 풀면 되었음.
+
+import sys
+import math
+
+a, b, v = map(int, sys.stdin.readline().split())
+day = (v-b)/(a-b)
+
+print(math.ceil(day))
+
+시간이 걸려있으면 항상 반복문 말고 다른 방법이 있다는걸 생각해보기
