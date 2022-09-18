@@ -1,0 +1,22 @@
+# 두 점 사이 거리니까 서로간에만 비교하면 됨
+
+1. 서로 비교해서 길이(절대값) 반환 해주고
+2. 그것중 min 한거 보내기
+
+1.
+
+select abs(x-lead(x) over (order by x)) distance
+from point
+
+2. 
+select min(distance) shortest
+from (
+    select abs(x - lead(x) over (order by x)) distance
+    from point p
+) result
+
+# 더 쉬운 풀이가 있었다...
+SELECT MIN(a.x - b.x) AS shortest
+FROM point a, point b
+WHERE a.x > b.x;
+
