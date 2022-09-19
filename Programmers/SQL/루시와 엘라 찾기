@@ -1,0 +1,13 @@
+# 이름을 찾는경우니까 like 사용해서 해결해야 겠다 생각
+
+SELECT animal_id, name, sex_upon_intake
+from animal_ins i
+WHERE 'Lucy, Ella, Pickle, Rogan, Sabrina, Mitty' LIKE CONCAT('%', NAME, '%')
+order by animal_id
+
+# in을 사용 하는게 더 
+
+SELECT animal_id, name, sex_upon_intake
+from animal_ins
+where name in ('Lucy', 'Ella', 'Pickle', 'Rogan', 'Sabrina', 'Mitty')
+
