@@ -1,0 +1,12 @@
+# 내가 푼 풀이
+
+select max(salary) SecondHighestSalary 
+from employee e
+where salary < (select max(salary) from employee)
+
+# 다른 방식
+
+select (select distinct salary
+from employee
+order by salary desc
+limit 1 offset 1) SecondHighestSalary
