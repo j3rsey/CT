@@ -1,0 +1,25 @@
+#처음 생각한건 열 행 바꾸는거니까 Pivot 사용 해야겠다 생각. 하지만 안됨. 그래서 union으로 변경
+
+# union 
+
+
+select product_id, 'store1' store, store1 price
+from Products p
+where store1 is not null
+
+union all
+
+select product_id, 'store2' store, store2 price
+from Products p
+where store2 is not null
+
+union all
+
+select product_id, 'store3' store, store3 price
+from Products p
+where store3 is not null
+
+order by product_id
+
+
+# pivot 
