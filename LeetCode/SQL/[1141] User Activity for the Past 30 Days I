@@ -1,0 +1,7 @@
+# 문제는 어렵지 않았지만, 문제를 이해하는데 매우 오래걸렸음. 별로 좋은 문제는 아닌듯
+
+select activity_date day, count(distinct user_id) active_users
+from Activity
+where (activity_date > "2019-06-27" AND activity_date <= "2019-07-27")
+group by activity_date
+
