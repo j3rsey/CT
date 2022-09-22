@@ -1,0 +1,7 @@
+# 처음 생각한것은 pivot으로 풀어야 하나 고민
+
+# group_concat이 생각나서 해당 방법으로 해결
+select sell_date, count(distinct product) num_sold, group_concat(distinct product) products
+from Activities 
+group by sell_date
+order by sell_date
