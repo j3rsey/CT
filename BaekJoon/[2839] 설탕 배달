@@ -1,0 +1,20 @@
+# 5로 나눠지면 몫을 배출한다.
+# 5로 나눠지지 않으면 3씩 뺴보면서 5로 나눠질때 까지 계속한다.
+# 5, 3 둘다로도 나눠지지 않으면 -1 배출
+
+import sys
+
+n = int(sys.stdin.readline())
+bag = 0 # 가방 수 초기화
+
+while n >= 0 :
+  if n % 5 == 0 :
+    bag += (n//5)
+    print(bag)
+    break
+
+  n -= 3 
+  bag += 1
+  
+else :
+  print(-1)
