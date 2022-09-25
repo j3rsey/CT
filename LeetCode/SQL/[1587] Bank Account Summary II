@@ -1,0 +1,6 @@
+# 내 풀이
+select name, sum(amount) balance
+from Transactions t
+join users u on t.account = u.account 
+group by t.account
+having sum(amount) > 10000
