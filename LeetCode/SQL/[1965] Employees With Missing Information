@@ -1,0 +1,29 @@
+# 내 접근 방식 따로 구하고 union으로 합치기
+
+select s.employee_id
+from Salaries s
+left join Employees e on e.employee_id = s.employee_id
+where name is null
+
+union
+
+select e.employee_id
+from Employees e
+left join Salaries s on e.employee_id = s.employee_id
+where salary is null
+
+order by 1
+
+
+# 서브쿼리로 구하는 방법이 있었음
+
+select employee_id
+from employees
+where employee_id not in (select employee_id from Salaries)
+
+union
+
+select employee_id
+from salaries
+where employee_id not in (select employee_id from Employees)
+order by employee_id asc
