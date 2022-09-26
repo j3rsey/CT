@@ -1,0 +1,12 @@
+# 내 풀이
+select user_id, max(time_stamp) last_stamp
+from Logins l
+where time_stamp like "2020%"
+group by user_id 
+# like 를 활용해서 2020 출력했지만, year사용해서출력하는 방법이 있었음
+
+# year
+select user_id, max(time_stamp) last_stamp
+from Logins l
+where year(time_stamp) = 2020
+group by user_id
