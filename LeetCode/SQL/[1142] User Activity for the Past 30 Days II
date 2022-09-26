@@ -1,10 +1,15 @@
 # 내가 접근
 # 문제를 이해를 못했다. 하지만 사람들 후기를보니 설명이 이상했다고 한다. 안풀껄
+# 문제가 이상했던 이유 open session~close session 까지를 1개의 세션으로 계산해야 풀리는 문제 distinct 써야 하지만 그 어디에도 Session에 대한 설명이 없음
+# 
 
-select ( sum(count(*)) / count(user_id) ) average_sessions_per_user
-from Activity 
-where activity_type != 'scroll_down'
-group by user_id 
+select round(sum(x)/count(user_id), 2)
+from (
+select user_id, count(session_id) x
+from Activity
+where activity_date between date_sub('2019-07-27', interval 29 day) and '2019-07-27'
+) y
+
 
 # 1번풀이
 
