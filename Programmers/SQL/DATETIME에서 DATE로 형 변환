@@ -1,0 +1,3 @@
+select animal_id, name, date_format(datetime, '%Y-%m-%d') 날짜 #Y,y 대소문자 구분 조심하기 ex) 2015 Y = 2015 , y = 15
+from animal_ins
+order by animal_id
