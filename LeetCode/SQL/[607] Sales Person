@@ -1,3 +1,4 @@
+
 1. company, orders 테이블에서 red와 관련있는 sales_id행 추출
 
 2. salesperson 과 비교하여 해당 sales_id 제외하고 name 추출
