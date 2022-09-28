@@ -1,0 +1,33 @@
+# 내가 푼 방식
+# case 써서 나눠주기
+
+select country_name, 
+(case
+    when sum(weather_state)/count(w.country_id) <= 15
+    then 'Cold'
+    when sum(weather_state)/count(w.country_id) >= 25
+    then 'Hot'
+    else 'Warm'
+end) weather_type
+
+from Weather w
+join Countries c on w.country_id = c.country_id
+where month(day) = '11'
+group by country_name
+
+# 다른 풀이
+# sum/count를 avg라는 좋은 방식이 있ㅇ므
+
+select country_name, 
+(case
+    when avg(weather_state) <= 15
+    then 'Cold'
+    when avg(weather_state) >= 25
+    then 'Hot'
+    else 'Warm'
+end) weather_type
+
+from Weather w
+join Countries c on w.country_id = c.country_id
+where month(day) = '11'
+group by country_name
