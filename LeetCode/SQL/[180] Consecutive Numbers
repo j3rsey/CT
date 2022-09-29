@@ -1,0 +1,23 @@
+# 내 풀이
+# join두번으로 비교해서 풀이
+
+select distinct l1.num ConsecutiveNums
+from Logs l1
+join Logs l2 on l1.id = l2.id + 1
+join Logs l3 on l1.id = l3.id + 2
+
+where l1.num = l2.num and l2.num = l3.num
+
+# 다른 풀이 lag or lead 사용
+
+select distinct a.num ConsecutiveNums
+from (
+select id, num, 
+lag /*lead*/ (num, 1) over (order by Id) 'lag'
+lag /*lead*/ (num, 2) over (order by Id) 'lag2'
+from Logs 
+) a
+where a.num = a.lag and a.lag = a.lag2
+
+# 
+
