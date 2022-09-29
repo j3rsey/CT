@@ -19,5 +19,9 @@ from Logs
 ) a
 where a.num = a.lag and a.lag = a.lag2
 
-# 
+# where in 사용
+
+select distinct Num as ConsecutiveNums
+from Logs
+where (Id + 1, Num) in (select * from Logs) and (Id + 2, Num) in (select * from Logs)
 
