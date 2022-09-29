@@ -1,0 +1,29 @@
+# 내가 생각한 풀이 
+# 1에서 최고, 2에서 최고 뽑아서 조인
+
+select d.name Department, e.name Employee, e.salary Salary
+from Employee e
+join Department d on e.departmentId = d.id
+having salary = (select max(salary) from employee ) or salary = (select max(salary) from employee where departmentId = '2')
+
+#문제점 1, 2 가 아니라 3,4,5 등등 다른 부서가 나오면 도출이 안됨.
+
+# 내가 생각 한 풀이 2
+# 각 부서별 부서아이디, 맥스값 뽑아서 기존 테이블에 붙여서 salary, max 비교
+
+select d.name Department, e.name Employee, e.salary Salary
+from Employee e
+join Department d on e.departmentId = d.id
+join (select departmentid, max(salary) max from employee group by departmentid) a
+on e.departmentId = a.departmentId and e.salary = a.max
+
+# select d.name Department, e.name Employee, E.salary Salary
+from Employee e, Department D, 
+(
+    select departmentid, max(salary) max
+    from employee
+    group by departmentid
+) a
+where e.departmentId = a.departmentId and 
+e.salary = a.max 
+and e.departmentId = d.id
