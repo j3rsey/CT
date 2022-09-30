@@ -1,0 +1,22 @@
+#맨 마지막 숫자가 홀수일시 가만히 두고 짝수와 홀수 바꾸기
+# 내 풀이 
+
+select
+if( id < (select count(*) from Seat), if(id mod 2 = 0, id-1, id+1), if(id mod 2 = 0, id-1, id) )id, student
+from Seat
+order by id
+
+# case로도 풀 수 있음
+
+select 
+(
+case
+    when (id mod 2 != 0) and id = (select count(*) from Seat) then id
+    when (id mod 2 = 0) then id - 1
+    else id + 1 
+
+end
+) id, student
+
+from Seat
+order by id 
