@@ -1,0 +1,8 @@
+# 공동 순위 처리가 1,2,3 으로 되기 때문에 dense_rank 사용하기로 생각
+# 내 풀이
+
+select score, DENSE_RANK() over (order by score desc) `rank`
+from Scores
+
+# 다른 풀이
+#
