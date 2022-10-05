@@ -1,0 +1,31 @@
+# 내가 푼 풀이
+# Case 문으로 from_id, to_id 위치 바꿔주고 문제 풀이
+
+#
+
+select
+(
+case
+    when from_id > to_id then to_id
+    else from_id
+end
+) person1,
+(
+case
+    when from_id < to_id then to_id
+    else from_id
+end
+) person2,
+count(*) call_count, sum(duration) total_duration
+from Calls
+group by person1, person2
+
+# least greatest 로 똑같이 풀이 가능
+
+select
+least(from_id, to_id) person1,
+greatest(from_id, to_id) person2,
+count(*) call_count,
+sum(duration) total_duration
+from Calls
+group by person1, person2
