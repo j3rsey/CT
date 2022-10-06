@@ -1,0 +1,16 @@
+# 처음 생각한 방법 1. lead를 이용해서 다음거랑 비교해서 분류 2. left join으로 직접 비교
+#lead
+
+
+# left join
+
+select round(count(distinct a2.player_id) / count(distinct a1.player_id), 2) fraction
+
+from 
+(
+select player_id, min(event_date) first_login
+from activity
+group by player_id 
+) a1
+
+left join Activity a2 on a1.player_id = a2.player_id and a1.first_login = a2.event_date - 1
