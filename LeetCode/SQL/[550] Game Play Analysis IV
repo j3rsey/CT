@@ -14,3 +14,30 @@ group by player_id
 ) a1
 
 left join Activity a2 on a1.player_id = a2.player_id and a1.first_login = a2.event_date - 1
+
+# join
+
+select round((case when a1.event_date + 1 = a2.event_date then 1 else 0 end) / count(distinct a1.player_id), 2) fraction
+from 
+(
+  select player_id, min(event_date) event_date
+  from Activity
+  group by player_id
+) a1
+join Activity a2 on a1.player_id = a2.player_id
+
+SELECT ROUND(SUM(CASE WHEN a1.event_date + 1 = a2.event_date THEN 1 ELSE 0 END)/COUNT(DISTINCT a1.player_id), 2) fraction 
+FROM 
+(
+    SELECT player_id, MIN(event_date) event_date
+    FROM Acivity 
+    GROUP BY player_id
+) a1 
+JOIN Activity a2 ON a1.player_id = a2.player_id 
+
+#  where in
+
+select round(count(distinct player_id) / (select count(distinct player_id) from Activity),2) fraction
+from Activity
+where (player_id, date_sub(event_date, interval 1 DAY)) 
+in (SELECT player_id, min(event_date) first_login FROM Activity GROUP BY player_id)
