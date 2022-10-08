@@ -1,0 +1,23 @@
+# 생각해본 방식 모두다 10 으로 셋팅 해놓고, 0816보다 작은애들만 새로운 값을 업데이트 해주는 방법
+
+# 내 풀이
+# 셋팅 해놓고 업데이트 하는 방법이 생각 나지 않아, 0816보다 작은애들은 따로 만들고, 0816보다 큰 애들중에 최초 시작이 그이후인 애들만 10으로 셋팅
+select distinct product_id, 10 as price
+from Products
+group by product_id
+having (min(change_date) > "2019-08-16")
+
+union
+
+select p2.product_id, p2.new_price
+from products p2
+where (p2.product_id, p2.change_date) 
+in
+(
+select product_id, max(change_date)
+from Products 
+where change_date <= '2019-08-16'
+group by product_id
+)
+
+# 
