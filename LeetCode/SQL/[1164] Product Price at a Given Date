@@ -20,4 +20,23 @@ where change_date <= '2019-08-16'
 group by product_id
 )
 
-# 
+# using left join
+# union 말고 left join을 하는 방법도 있는데 그걸 생각 못했음.
+
+SELECT distinct p1.product_id, ifnull(p2.new_price,10) price 
+FROM products p1
+LEFT JOIN
+(
+    SELECT * 
+    FROM products 
+    WHERE (product_id, change_date) 
+    in 
+    (
+        select product_id,max(change_date) 
+        from products 
+        where change_date<="2019-08-16" 
+        group by product_id
+    )
+) p2
+
+on p1.product_id = p2.product_id;
