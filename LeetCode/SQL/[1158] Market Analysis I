@@ -1,0 +1,11 @@
+# 풀이 생각 2019에 구매 내역만 가지고 users에 left join 시키고 null값 (2019에 구매 내역 x)는 ifnull로 0 처리  
+
+select u.user_id as buyer_id, join_date, IFNULL(COUNT(order_date), 0) orders_in_2019
+from Users u
+left join
+(
+    select *
+    from Orders o
+    where order_date like '2019%'
+)a1 on u.user_id = a1.buyer_id
+group by u.user_id
