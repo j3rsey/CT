@@ -1,0 +1,6 @@
+# count 사용해서 리스트중에 동일한 값 갯수 세기. index값이 필요할시 find 
+n = int(input())
+a = list(map(int, input().split()))
+b = int(input())
+
+print(a.count(b))
